@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.*;
 
 /**
  * Hello world!
@@ -34,12 +35,28 @@ public class App
            }
         });
 
-        JButton goodbyeButton = new JButton("Say hello");
+        JButton goodbyeButton = new JButton("Say goodbye");
         // lambda expression (block)
         goodbyeButton.addActionListener( event -> {
             staticTextField.setText("Good bye, world !");
             localTextField.setText("Good bye, world !");
         });
+
+//	staticTextField = null;
+	//localTextField = null;
+
+
+//	Container contentPane = frame.getContentPane();
+	frame.getContentPane().setLayout(new FlowLayout());
+	frame.getContentPane().add(staticTextField);
+	frame.getContentPane().add(localTextField);
+	frame.getContentPane().add(helloButton);
+	frame.getContentPane().add(goodbyeButton);
+
+	frame.setAlwaysOnTop(true);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.pack();
+	frame.setVisible(true);
 
         Employee mike = new Employee("Mike",2000),
                  louise = new Employee("Louise",2500);
