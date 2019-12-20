@@ -1,10 +1,12 @@
 package me.dusanov.functional.stream.example;
 
 import lombok.AccessLevel;
+import lombok.ToString;
 import lombok.Getter;
 import lombok.Setter;
 
 // i could have used @Data so i only put props and no constructor
+@ToString
 public class Employee{
     @Getter @Setter private String name;
     @Getter @Setter private int salary;

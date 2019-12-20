@@ -13,6 +13,9 @@ import java.util.function.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.TreeSet;
+import java.util.Map;
 /**
  * Hello world!
  *
@@ -110,6 +113,48 @@ public class App
 				).limit(3)
 				 .map(Employee::getName)
 				 .forEachOrdered(both::accept);
+
+		both.accept("================");
+		both.accept("===== Reduce & collect ======");
+		//quadratic complexity - no good
+		Stream<Employee> streamOfEmployees2 = Stream.of(employees);
+		both.accept( streamOfEmployees2.map(Employee::getName)
+					.reduce("",(a,b)->a + " " + b)
+		);
+
+		both.accept( "long version: " + 
+			Stream.of(employees).map(Employee::getName).collect(
+					()-> new StringBuilder(),
+					(StringBuilder builder, String s)->builder.append(s),
+					(StringBuilder builder1, StringBuilder builder2)->builder1.append(builder2)
+			).toString()
+		);
+		both.accept( "medium version: " + 
+			Stream.of(employees).map(Employee::getName).collect(
+					StringBuilder::new,
+					StringBuilder::append,
+					StringBuilder::append
+			).toString()
+		);
+		both.accept( "short version: " + 
+			Stream.of(employees).map(Employee::getName)
+				.collect(Collectors.joining(", "))
+			.toString()
+		);
+
+		TreeSet<Employee> treeO = Stream.of(employees).collect(
+			Collectors.toCollection(
+				()-> new TreeSet<Employee>(Comparator.comparingInt(Employee::getSalary))
+			)
+		);
+		both.accept(" tree of employees: " + treeO); 
+
+		both.accept(" == Salary map: " + Stream.of(employees).collect(
+			Collectors.toMap(Employee::getName, Employee::getSalary)));
+		
+		both.accept(" == Salary grouping by: " + Stream.of(employees).collect(
+			Collectors.groupingBy(e->e.getSalary()/1250)));
+
 
 		both.accept("================");
 		Arrays.stream(employees).filter( e -> e.getSalary() >= 2500 )
