@@ -5,49 +5,55 @@ Hello monads
 ====Section 5: transforming & rearanging=====
 Pera
 Louise
-Djura
+Mike
 ================
 ===== Reduce & collect ======
- Mike Louise Djura Pera
-long version: MikeLouiseDjuraPera
-medium version: MikeLouiseDjuraPera
-short version: Mike, Louise, Djura, Pera
- tree of employees: [Employee(name=Mike, salary=2000), Employee(name=Djura, salary=2300), Employee(name=Louise, salary=2500), Employee(name=Pera, salary=2700)]
- == Salary map: {Pera=2700, Mike=2000, Louise=2500, Djura=2300}
- == Salary grouping by: {1=[Employee(name=Mike, salary=2000), Employee(name=Djura, salary=2300)], 2=[Employee(name=Louise, salary=2500), Employee(name=Pera, salary=2700)]}
+ Mike Louise Djura Sirotica Pera
+long version: MikeLouiseDjuraSiroticaPera
+medium version: MikeLouiseDjuraSiroticaPera
+short version: Mike, Louise, Djura, Sirotica, Pera
+ tree of employees: [Employee(name=Sirotica, salary=300), Employee(name=Djura, salary=1300), Employee(name=Mike, salary=2000), Employee(name=Louise, salary=2500), Employee(name=Pera, salary=3700)]
+ == Salary map: {Pera=3700, Mike=2000, Louise=2500, Sirotica=300, Djura=1300}
+ == Salary grouping by: {0=[Employee(name=Sirotica, salary=300)], 1=[Employee(name=Djura, salary=1300)], 2=[Employee(name=Mike, salary=2000), Employee(name=Louise, salary=2500)], 3=[Employee(name=Pera, salary=3700)]}
+ == Salary > 2300 partition by: {false=[Employee(name=Mike, salary=2000), Employee(name=Djura, salary=1300), Employee(name=Sirotica, salary=300)], true=[Employee(name=Louise, salary=2500), Employee(name=Pera, salary=3700)]}
+================
+===== primitive streams: ======
+-=- avg salary: OptionalDouble[1960.0]
+================
+====== Parallel ======
+ == sequential sum of salaries: 9800
+ ==-- parallel sum of salaries: 9800
 ================
 Louise
 Pera
 spit out random ints greater than 0: 
- generated: -63655047
- generated: 652008751
-652008751
- generated: -471279521
- generated: -677117306
- generated: 493734553
-493734553
- generated: 584065089
-584065089
- generated: -1991268880
- generated: 1653032664
-1653032664
- generated: 1033873388
-1033873388
- generated: -707259738
- generated: 206884500
-206884500
- generated: 1273294148
-1273294148
- generated: -1417907903
- generated: -866434687
- generated: -1193449536
- generated: 493594380
-493594380
- generated: 1166414862
-1166414862
- generated: -1305188844
- generated: 552336750
-552336750
+ generated: -791779443
+ generated: -1860899286
+ generated: -1447738779
+ generated: 593719893
+593719893
+ generated: 1859260038
+1859260038
+ generated: 206709912
+206709912
+ generated: 1657828444
+1657828444
+ generated: 1908211813
+1908211813
+ generated: 752431890
+752431890
+ generated: 1144799555
+1144799555
+ generated: -323729918
+ generated: -1950429090
+ generated: 1975302905
+1975302905
+ generated: -554385131
+ generated: -383895497
+ generated: 226874692
+226874692
+ generated: 1065930568
+1065930568
 A
 AA
 AAA

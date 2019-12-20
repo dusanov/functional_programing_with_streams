@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import java.util.stream.Collectors;
 import java.util.TreeSet;
 import java.util.Map;
+import java.util.OptionalDouble;
 /**
  * Hello world!
  *
@@ -90,8 +91,9 @@ public class App
 
 	//Streams - section 4, first lesson
 	Employee[] employees = {mike, louise,
-				new Employee("Djura",2300),
-				new Employee("Pera",2700) };
+				new Employee("Djura",1300),
+				new Employee("Sirotica",300),
+				new Employee("Pera",3700) };
 
 	try (PrintWriter writer = new PrintWriter("somefile.txt");) {
 		Consumer<String> logger = writer::println;
@@ -153,9 +155,26 @@ public class App
 			Collectors.toMap(Employee::getName, Employee::getSalary)));
 		
 		both.accept(" == Salary grouping by: " + Stream.of(employees).collect(
-			Collectors.groupingBy(e->e.getSalary()/1250)));
+			Collectors.groupingBy(e->e.getSalary()/1000)));
 
+		both.accept(" == Salary > 2300 partition by: " + Stream.of(employees).collect(
+			Collectors.partitioningBy(e->e.getSalary() > 2300)));
 
+		both.accept("================");
+		both.accept("===== primitive streams: ======");
+
+		OptionalDouble avgSalary = Stream.of(employees).mapToInt(Employee::getSalary).average();
+		both.accept("-=- avg salary: " + avgSalary);
+
+		both.accept("================");
+		both.accept("====== Parallel ======");
+		both.accept(" == sequential sum of salaries: " +
+			Stream.of(employees).mapToInt(Employee::getSalary).sum());
+		
+		both.accept(" == parallel sum of salaries: " +
+			Stream.of(employees).parallel().mapToInt(Employee::getSalary).sum());
+		
+		
 		both.accept("================");
 		Arrays.stream(employees).filter( e -> e.getSalary() >= 2500 )
 					.map(Employee::getName)
