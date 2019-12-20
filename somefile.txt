@@ -22,38 +22,41 @@ short version: Mike, Louise, Djura, Sirotica, Pera
 ================
 ====== Parallel ======
  == sequential sum of salaries: 9800
- ==-- parallel sum of salaries: 9800
+ == parallel sum of salaries: 9800
+================
+==== Using Parallel Streams: ========
 ================
 Louise
 Pera
 spit out random ints greater than 0: 
- generated: -791779443
- generated: -1860899286
- generated: -1447738779
- generated: 593719893
-593719893
- generated: 1859260038
-1859260038
- generated: 206709912
-206709912
- generated: 1657828444
-1657828444
- generated: 1908211813
-1908211813
- generated: 752431890
-752431890
- generated: 1144799555
-1144799555
- generated: -323729918
- generated: -1950429090
- generated: 1975302905
-1975302905
- generated: -554385131
- generated: -383895497
- generated: 226874692
-226874692
- generated: 1065930568
-1065930568
+ generated: -1203498845
+ generated: 848134424
+848134424
+ generated: 1934670183
+1934670183
+ generated: -1169172571
+ generated: -1345925253
+ generated: 376519633
+376519633
+ generated: 1496789734
+1496789734
+ generated: -1473573366
+ generated: 1621424980
+1621424980
+ generated: 971919768
+971919768
+ generated: -842398392
+ generated: 1122885759
+1122885759
+ generated: 1490340789
+1490340789
+ generated: -1077903851
+ generated: 910340780
+910340780
+ generated: -396340267
+ generated: -416326657
+ generated: 310469431
+310469431
 A
 AA
 AAA
