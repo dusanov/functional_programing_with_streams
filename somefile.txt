@@ -1,42 +1,45 @@
 Program started with initial: M
+monads section:
+Hello monads
+================
+====Section 5: transforming & rearanging=====
+Pera
+Louise
+Djura
+================
 Louise
 Pera
 spit out random ints greater than 0: 
- generated: -1280247137
- generated: -1172705189
- generated: -1680911431
- generated: -974518491
- generated: -935974618
- generated: 685426255
-685426255
- generated: -1593350410
- generated: 178473814
-178473814
- generated: -1749582884
- generated: 621333479
-621333479
- generated: -1101643326
- generated: 1001766522
-1001766522
- generated: -1318574443
- generated: -138702544
- generated: 718005871
-718005871
- generated: 729246977
-729246977
- generated: 550875283
-550875283
- generated: -2039347584
- generated: -589368621
- generated: -509619528
- generated: -40971441
- generated: -1108120081
- generated: 1410442936
-1410442936
- generated: 1450797915
-1450797915
- generated: 1200816505
-1200816505
+ generated: -1855902645
+ generated: 248857646
+248857646
+ generated: 848035654
+848035654
+ generated: 1157916911
+1157916911
+ generated: 2089844254
+2089844254
+ generated: -631486762
+ generated: -1674210739
+ generated: 684973032
+684973032
+ generated: 1187756327
+1187756327
+ generated: -2102746339
+ generated: 949027108
+949027108
+ generated: -1967621876
+ generated: -302707762
+ generated: -850596939
+ generated: -1874006934
+ generated: -1611600260
+ generated: -697820219
+ generated: 550332054
+550332054
+ generated: 2058007522
+2058007522
+ generated: 285413746
+285413746
 A
 AA
 AAA

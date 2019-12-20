@@ -90,12 +90,28 @@ public class App
 				new Employee("Djura",2300),
 				new Employee("Pera",2700) };
 
-		try (PrintWriter writer = new PrintWriter("somefile.txt");) {
+	try (PrintWriter writer = new PrintWriter("somefile.txt");) {
 		Consumer<String> logger = writer::println;
 		Consumer<String> screener = System.out::println;
 		Consumer<String> both = screener.andThen(logger);
 		both.accept("Program started with initial: " + initial.apply(mike));
+		
+		//Monads section
+		both.accept("monads section:");
+		Stream<String> splitStringIntoStream = Stream.of("Hello monads");
+		splitStringIntoStream.forEach(both::accept);
+	
+		both.accept("================");
+		both.accept("====Section 5: transforming & rearanging=====");
 
+		Stream<Employee> streamOfEmployees = Stream.of(employees);
+		streamOfEmployees.sorted(
+					Comparator.comparingInt(Employee::getSalary).reversed()
+				).limit(3)
+				 .map(Employee::getName)
+				 .forEachOrdered(both::accept);
+
+		both.accept("================");
 		Arrays.stream(employees).filter( e -> e.getSalary() >= 2500 )
 					.map(Employee::getName)
 					.sorted()
