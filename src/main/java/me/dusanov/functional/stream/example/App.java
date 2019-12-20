@@ -176,6 +176,11 @@ public class App
 		
 		
 		both.accept("================");
+		both.accept("==== Using Parallel Streams: ========");
+
+		
+
+		both.accept("================");
 		Arrays.stream(employees).filter( e -> e.getSalary() >= 2500 )
 					.map(Employee::getName)
 					.sorted()
