@@ -1,0 +1,49 @@
+Program started with initial: M
+Louise
+Pera
+spit out random ints greater than 0: 
+ generated: -1280247137
+ generated: -1172705189
+ generated: -1680911431
+ generated: -974518491
+ generated: -935974618
+ generated: 685426255
+685426255
+ generated: -1593350410
+ generated: 178473814
+178473814
+ generated: -1749582884
+ generated: 621333479
+621333479
+ generated: -1101643326
+ generated: 1001766522
+1001766522
+ generated: -1318574443
+ generated: -138702544
+ generated: 718005871
+718005871
+ generated: 729246977
+729246977
+ generated: 550875283
+550875283
+ generated: -2039347584
+ generated: -589368621
+ generated: -509619528
+ generated: -40971441
+ generated: -1108120081
+ generated: 1410442936
+1410442936
+ generated: 1450797915
+1450797915
+ generated: 1200816505
+1200816505
+A
+AA
+AAA
+AAAA
+AAAAA
+AAAAAA
+AAAAAAA
+AAAAAAAA
+AAAAAAAAA
+AAAAAAAAAA

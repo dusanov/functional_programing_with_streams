@@ -7,6 +7,12 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
+import java.io.*;
+import java.util.function.*;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.Stream;
 /**
  * Hello world!
  *
@@ -19,44 +25,6 @@ public class App
 
     public static void main( String[] args )
     {
-        JFrame frame = new JFrame();
-        staticTextField = new JTextField(FIELD_WIDTH);
-        staticTextField.setText("Static Field");
-
-        JTextField localTextField = new JTextField(FIELD_WIDTH);
-        localTextField.setText("Local variable");
-
-        JButton helloButton = new JButton("Say hello");
-        // Regular anonymous class
-        helloButton.addActionListener(new ActionListener(){
-           public void actionPerformed(ActionEvent event) {
-            staticTextField.setText("Hello, world !");
-            localTextField.setText("Hello, world !");
-           }
-        });
-
-        JButton goodbyeButton = new JButton("Say goodbye");
-        // lambda expression (block)
-        goodbyeButton.addActionListener( event -> {
-            staticTextField.setText("Good bye, world !");
-            localTextField.setText("Good bye, world !");
-        });
-
-//	staticTextField = null;
-	//localTextField = null;
-
-
-//	Container contentPane = frame.getContentPane();
-	frame.getContentPane().setLayout(new FlowLayout());
-	frame.getContentPane().add(staticTextField);
-	frame.getContentPane().add(localTextField);
-	frame.getContentPane().add(helloButton);
-	frame.getContentPane().add(goodbyeButton);
-
-	frame.setAlwaysOnTop(true);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.pack();
-	frame.setVisible(true);
 
         Employee mike = new Employee("Mike",2000),
                  louise = new Employee("Louise",2500);
@@ -106,9 +74,89 @@ public class App
         Consumer<?> consumer2 = msg -> System.out.println(msg);
         // added manifest type to parameter
         Consumer<?> consumer3 = (String msg) -> System.out.println(msg.length());
-   
+ 
+
+	//Functinal composition
+	Function<Employee,String> getName = Employee::getName;
+	Function<String,Character> getFirstLetter = name -> name.charAt(0);
+	Function<Employee,Character> initial = getName.andThen(getFirstLetter);
+	//Functional composition - comparing 
+	Comparator<Employee> compareByName = Comparator.comparing(Employee::getName);
+	Comparator<Employee> compareBySalary = Comparator.comparingInt(Employee::getSalary);
+	Comparator<Employee> compareByNameAndSalary = compareByName.thenComparing(compareBySalary);
+
+	//Streams - section 4, first lesson
+	Employee[] employees = {mike, louise,
+				new Employee("Djura",2300),
+				new Employee("Pera",2700) };
+
+		try (PrintWriter writer = new PrintWriter("somefile.txt");) {
+		Consumer<String> logger = writer::println;
+		Consumer<String> screener = System.out::println;
+		Consumer<String> both = screener.andThen(logger);
+		both.accept("Program started with initial: " + initial.apply(mike));
+
+		Arrays.stream(employees).filter( e -> e.getSalary() >= 2500 )
+					.map(Employee::getName)
+					.sorted()
+					.forEach(both::accept);
+
+		//Generate each element of the stream separately
+		final Random random = new Random();
+		Stream<Integer> randomIntegers = Stream.generate(()->{
+							Integer randInt = random.nextInt();
+							both.accept(" generated: " + randInt.toString());
+							return randInt;
+						});
+
+		both.accept("spit out random ints greater than 0: ");
+		randomIntegers.filter(n->n>=0).limit(10).map(n->n.toString()).forEach(both::accept);	
+		//Creating each element from previous one
+		Stream<String> as = Stream.iterate("A", s -> s + "A").limit(10);
+		as.forEach(both::accept);	
+			
+
+	} catch (FileNotFoundException fnfe){
+		System.out.println("file not found ");
+	}
 
 
+        JFrame frame = new JFrame();
+        staticTextField = new JTextField(FIELD_WIDTH);
+        staticTextField.setText("Static Field");
+
+        JTextField localTextField = new JTextField(FIELD_WIDTH);
+        localTextField.setText("Local variable");
+
+        JButton helloButton = new JButton("Say hello");
+        // Regular anonymous class
+        helloButton.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent event) {
+            staticTextField.setText("Hello, world !");
+            localTextField.setText("Hello, world !");
+           }
+        });
+
+        JButton goodbyeButton = new JButton("Say goodbye");
+        // lambda expression (block)
+        goodbyeButton.addActionListener( event -> {
+            staticTextField.setText("Good bye, world !");
+            localTextField.setText("Good bye, world !");
+        });
+
+	//staticTextField = null;
+	//localTextField = null;
+
+	frame.getContentPane().setLayout(new FlowLayout());
+	frame.getContentPane().add(staticTextField);
+	frame.getContentPane().add(localTextField);
+	frame.getContentPane().add(helloButton);
+	frame.getContentPane().add(goodbyeButton);
+
+	frame.setAlwaysOnTop(true);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.pack();
+	frame.setVisible(true);  
 
     }
 }
